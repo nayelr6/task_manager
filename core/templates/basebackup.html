@@ -1,0 +1,31 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'task_list' %}">Tasks</a></li>
+            <li><a href="{% url 'task_create' %}">Create Task</a></li>
+            <form method="get">
+                <input type="text" name="q" placeholder="Search by title">
+                <button type="submit">Search & Filter</button>
+            </form>
+            
+        </ul>
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}! <a href="{% url 'logout' %}">Logout</a></p>
+        {% else %}
+            <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Signup</a></p>
+        {% endif %}
+    </nav>
+    <div class="content">
+        {%block content%}
+        {%endblock%}
+    </div>
+</body>
+</html>

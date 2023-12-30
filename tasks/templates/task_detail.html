@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Detail</title>
+</head>
+<body>
+        {%block content%}
+        <div class ="container" style=" padding-top:90px;">
+            <h1>{{ task.title }}</h1>
+            <p>By: {{task.user}}</p>
+            <p>Description: {{ task.description }}</p>
+            <p>Due Date: {{ task.due_date }}</p>
+            <p>Priority: {{ task.priority }}</p>
+            <p>Complete: {{ task.complete }}</p>
+
+            
+            {% if task.user == request.user %}
+                <a href="{% url 'task_update' task.id %}">Update</a> 
+                <a href="{% url 'task_delete' task.id %}">Delete</a>
+            {%endif%}
+        </div>
+        {%endblock%}
+    
+</body>
+</html>

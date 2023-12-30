@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Task</title>
+    <!-- Add your CSS or Bootstrap links here if needed -->
+</head>
+<body>
+    {% block content %}
+    <div class ="container" style=" padding-top:90px;">
+    <h1>Delete Task: {{ task.title }}</h1>
+    <p>Are you sure you want to delete this task?</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" style="margin-bottom:10px;">Confirm Delete</button>
+    </form>
+    
+    <a href="{% url 'task_list' %}">Back to Task List</a>
+    </div>
+    {% endblock %}
+</body>
+</html>

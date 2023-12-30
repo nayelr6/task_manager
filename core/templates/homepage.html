@@ -1,0 +1,44 @@
+{%extends 'homenav.html'%}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+{%block content%}
+    <div id="home" class="section home-section" style="background-image: url('static/image/home2.jpg');">
+        <div class="welcome-container">
+            <div class="translucent-box">
+                <h1>Welcome to Task Managing Website</h1>
+                <p>
+                    Explore tasks to be made and manage them as you see fit!
+                </p>
+            </div>
+        </div>  
+    </div>
+    <div id="about" class="section about-section" style="background-image: url('static/image/about.jpg');">
+        <div class="about-content">
+            <div class="translucent-boxabout">
+                <h1>About Us</h1>
+                <p> Welcome to Tasks, the ultimate destination for online task management
+                    This is just the right tool you need to manage your workflow!
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="contact" class="section contact-section" style="background-image: url('static/image/contact.jpg');">
+        <div class="contact-content">
+            <div class="translucent-box">
+                <h1>Contact Us</h1>
+                <p>
+                    Email us at <a href="mailto:customersupport@tasks.com">admin@tasks.com</a>
+                </p>
+                <p>Call us at <a href="tel:+8801735712325">+880 1735712325</a></p>
+                <p>Send us a text on <a href="sms:+8801735712325">+880 1735712325</a></p>
+            </div>
+        </div>
+    </div>
+    {%endblock%}
+</body>
+</html>
+

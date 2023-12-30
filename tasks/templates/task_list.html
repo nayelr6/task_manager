@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List</title>
+
+</head>
+<body>
+    
+    {%block content%}
+    <div class ="container" style="text-allign:center;">
+    <h1>Tasks</h1>
+    {% for task in tasks %}
+        
+            <h2>{{ task.title }}</h2>
+            <h2>{{task.priority}}</h2>
+            <p>By: {{task.user}}</p>
+            <p>Description: {{ task.description }}</p>
+            <p>Due Date: {{ task.due_date }}</p>
+            <p>Complete: {{task.complete}}</p>
+
+            <a href="{% url 'task_detail' task.id %}"><button type="button" class="btn btn-outline-primary">View Task</button></a> 
+            {% if task.user == request.user %}
+                <a href="{% url 'task_update' task.id %}"><button type="button" class="btn btn-outline-primary">Update</button></a> 
+                <a href="{% url 'task_delete' task.id %}"><button type="submit" class="btn btn-outline-danger">Delete</button></a>
+            {%endif %}
+        
+        <hr>
+    {% endfor %}
+    </div>
+    {%endblock%}
+    
+</body>
+</html>
