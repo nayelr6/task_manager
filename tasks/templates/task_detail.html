@@ -17,8 +17,8 @@
 
             
             {% if task.user == request.user %}
-                <a href="{% url 'task_update' task.id %}">Update</a> 
-                <a href="{% url 'task_delete' task.id %}">Delete</a>
+                <a href="{% url 'task_update' task.id %}"><button type="button" class="btn btn-outline-primary">Update</button></a> 
+                <a href="{% url 'task_delete' task.id %}"><button type="button" class="btn btn-outline-danger">Delete</button></a>
             {%endif%}
         </div>
         {%endblock%}
