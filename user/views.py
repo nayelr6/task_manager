@@ -7,6 +7,8 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate, login
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .forms import UserProfileUpdateForm
 
 from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth.models import User
@@ -79,7 +81,7 @@ def get_user_info_view(request):
     return Response(user_details, status=status.HTTP_200_OK)
 
 
-@api_view(['PUT'])
+@api_view(['GET','PUT'])
 @permission_classes([IsAuthenticated])
 def update_user_profile(request):
     user = request.user  
@@ -88,6 +90,29 @@ def update_user_profile(request):
         serializer.save()  
         return Response({'message': 'User profile updated successfully.'}, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+@login_required
+def update_profile(request):
+    user = request.user
+    if request.method == 'POST':
+        form = UserProfileUpdateForm(request.POST, instance=user)
+        if form.is_valid():
+            new_password = form.cleaned_data.get('password')
+            if new_password:
+                user.set_password(new_password)
+            form.save()
+            
+          
+            return redirect('update_profile')  
+    else:
+        form = UserProfileUpdateForm(instance=user)
+    
+    return render(request, 'update_profile.html', {'form': form})
+
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
@@ -112,3 +137,5 @@ def user_logout(request):
     
     #return Response({'message': 'User logged out successfully.'}, status=status.HTTP_200_OK)
     redirect('homepage')
+
+
