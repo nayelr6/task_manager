@@ -23,4 +23,7 @@ download the code as zip, open an IDE in that folder directory.
        python manage.py runserver
 
 
+edit: The youtube video upload had failed previosuly for some reason, just got to know today, had to reupload it, heres the updated link.  https://youtu.be/jc1iwyixYi0
+
+
 
